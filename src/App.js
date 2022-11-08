@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import LoginContext from "./context/LoginContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import "./App.css";
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
+  const handlePasswordChange = (value) => {
+    setPassword(value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LoginContext.Provider
+      value={{
+        email,
+        password,
+        handleEmailChange: handleEmailChange,
+        handlePasswordChange: handlePasswordChange,
+      }}
+    >
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route exact path="/" element={<Home />} />
+          </Route>
+          <Route exact path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </LoginContext.Provider>
   );
 }
 

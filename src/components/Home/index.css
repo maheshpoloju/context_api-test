@@ -1,0 +1,36 @@
+.main-container {
+}
+.items-container {
+  display: flex;
+  /* justify-content: flex-start; */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+.post-item {
+  list-style-type: none;
+  margin: 30px;
+}
+
+.card-container {
+  width: 300px;
+  border: 2px solid black;
+  margin-bottom: 10px;
+}
+.item-image {
+  height: 280px;
+  width: 300px;
+}
+.item-details-container {
+  margin-left: 6px;
+}
+.item-name {
+  font-size: 18px;
+}
+.item-type {
+  font-size: 15px;
+}
+.item-description {
+  font-size: 13px;
+}
